@@ -5,7 +5,7 @@ import java.util.Arrays;
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-    private int size = 0;
+    private int size;
 
     void clear() {
         for (int i = 0; i < size; i++) {
@@ -22,7 +22,8 @@ public class ArrayStorage {
         if (size >= storage.length) {
             System.out.println("Arrays is full. Not possible to save new resume");
             return;
-        } else if (findIndex(r.uuid) > 0) {
+        }
+        if (findIndex(r.uuid) > 0) {
             System.out.println("Resume already exists in the list");
             return;
         }
@@ -42,6 +43,7 @@ public class ArrayStorage {
         for (int i = index; i < size - 1; i++) {
             storage[i] = storage[i + 1];
         }
+        storage[size] = null;
         size--;
     }
 
